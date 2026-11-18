@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102b50">
+  <meta name="description" content="AIR SUPPORT - trợ lý thông tin chuyến bay và dịch vụ hành khách.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>AIR SUPPORT</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="AIR SUPPORT trang chủ">
+      <span class="brand-mark">✈</span>
+      <span><b>AIR SUPPORT</b><small>TRAVEL SMARTER · FLY EASIER</small></span>
+    </a>
+    <button class="icon-btn" id="installBtn" hidden aria-label="Cài đặt ứng dụng">＋</button>
+  </header>
+
+  <main id="app">
+    <section class="hero" id="home">
+      <p class="eyebrow">TRỢ LÝ HÀNH TRÌNH CỦA BẠN</p>
+      <h1>Bay thuận tiện.<br><span>An tâm hơn.</span></h1>
+      <p class="hero-copy">Tra cứu thông tin và chuẩn bị cho chuyến đi của bạn tại một nơi.</p>
+      <div class="hero-pills"><span>✈ Chuyến bay</span><span>▣ Dịch vụ sân bay</span><span>♡ Lưu hành trình</span></div>
+    </section>
+
+    <section class="section" id="flight-search">
+      <div class="section-heading">
+        <div><p class="eyebrow">THÔNG TIN HÀNH TRÌNH</p><h2>Tra cứu chuyến bay</h2></div>
+        <span class="section-icon">✈</span>
+      </div>
+      <form id="flightForm" class="panel">
+        <label for="flightNumber">Số hiệu chuyến bay</label>
+        <input id="flightNumber" name="flightNumber" maxlength="12" placeholder="Ví dụ: VN123" autocomplete="off">
+        <div class="two-col">
+          <div><label for="origin">Sân bay đi</label><select id="origin"><option value="">Chọn sân bay</option></select></div>
+          <div><label for="destination">Sân bay đến</label><select id="destination"><option value="">Chọn sân bay</option></select></div>
+        </div>
+        <label for="travelDate">Ngày khởi hành</label>
+        <input id="travelDate" type="date">
+        <button class="btn btn-primary full" type="submit">Tra cứu chuyến bay <span>→</span></button>
+        <p class="form-note">Thông tin giờ bay và trạng thái cần được xác nhận từ hãng hàng không hoặc sân bay.</p>
+      </form>
+      <div id="flightResult" class="notice" role="status" aria-live="polite">
+        <b>Chưa kết nối dữ liệu chuyến bay trực tiếp</b>
+        <p>AIR SUPPORT hiện đã có giao diện tra cứu. Kết quả thực tế sẽ hiển thị sau khi kết nối nhà cung cấp dữ liệu được cấp phép.</p>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading"><div><p class="eyebrow">CHUẨN BỊ CHUYẾN ĐI</p><h2>Dịch vụ hành khách</h2></div><a class="text-link" href="#all-services">Xem tất cả</a></div>
+      <div class="service-grid" id="serviceGrid"></div>
+    </section>
+
+    <section class="section" id="saved">
+      <div class="section-heading"><div><p class="eyebrow">TRUY CẬP NHANH</p><h2>Chuyến bay đã lưu</h2></div></div>
+      <div class="panel saved-panel" id="savedFlights"><div class="empty-state">Bạn chưa lưu chuyến bay nào.<br>Tra cứu và lưu hành trình để xem lại nhanh.</div></div>
+    </section>
+
+    <section class="section" id="all-services">
+      <div class="section-heading"><div><p class="eyebrow">CẨM NANG BAY</p><h2>Hướng dẫn hữu ích</h2></div></div>
+      <div id="guideList" class="guide-list"></div>
+    </section>
+
+    <section class="section about">
+      <div class="about-card">
+        <span class="about-icon">ⓘ</span>
+        <div><b>Thông tin minh bạch</b><p>AIR SUPPORT là công cụ hỗ trợ hành khách. Lịch bay, cửa khởi hành, quy định hành lý và điều kiện vận chuyển có thể thay đổi. Luôn xác nhận với hãng bay hoặc sân bay.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Điều hướng chính">
+    <a class="active" href="#home"><span>⌂</span>Trang chủ</a>
+    <a href="#flight-search"><span>✈</span>Chuyến bay</a>
+    <a href="#services"><span>▦</span>Dịch vụ</a>
+    <a href="#saved"><span>♡</span>Đã lưu</a>
+  </nav>
+
+  <dialog id="serviceDialog" class="service-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="Đóng">×</button></form>
+    <div id="dialogContent"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
