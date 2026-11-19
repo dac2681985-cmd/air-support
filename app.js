@@ -134,7 +134,7 @@ $("flightForm").addEventListener("submit",e=>{
   });
 });
 
-populateAirports(); renderServices(); renderSaved();
+populateAirports(); renderServices();loadAirportsFromSupabase(); renderSaved();
 
 let deferredInstallPrompt=null;
 window.addEventListener("beforeinstallprompt",e=>{
