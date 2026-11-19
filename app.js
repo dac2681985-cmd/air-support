@@ -56,6 +56,39 @@ function populateAirports(){
     });
   });
 }
+async function loadAirportsFromSupabase() {
+  try {
+    const { data, error } = await supabaseClient
+      .from("airports")
+      .select("name, iata_code, city")
+      .order("iata_code");
+
+    if (error) throw error;
+    if (!data || data.length === 0) return;
+
+    AIRPORTS.splice(
+      0,
+      AIRPORTS.length,
+      ...data.map(a => ({
+        code: a.iata_code,
+        name: a.name,
+        city: a.city || ""
+      }))
+    );
+
+    ["origin", "destination"].forEach(id => {
+      const select = $(id);
+      if (select) select.innerHTML = "";
+    });
+
+    populateAirports();
+    toast("Đã tải danh sách sân bay từ Supabase");
+  } catch (error) {
+    console.error("Supabase airports:", error);
+    toast("Chưa tải được danh sách sân bay từ cơ sở dữ liệu");
+  }
+}
+
 
 function renderServices(){
   $("serviceGrid").innerHTML=SERVICES.map(s=>`
