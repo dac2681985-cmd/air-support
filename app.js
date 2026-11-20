@@ -1,7 +1,7 @@
 
 // KET NOI SUPABASE - AIR SUPPORT 1.1
 const SUPABASE_URL = "https://nkyybhiavbwkrbfpisdc.supabase.co";
-const SUPABASE_ANON_KEY = "DÁN_TOÀN_BỘ_KHÓA_THẬT";
+const SUPABASE_ANON_KEY = "sb_publishable_OJGKwORidseYDGq3D-zcRQ_mRR8Me3U";
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
